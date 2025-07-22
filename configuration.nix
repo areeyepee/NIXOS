@@ -116,6 +116,9 @@
     #---NIX Specific---
     alejandra
     nixd
+
+    nh
+    manix
     #--- CLI---
     wget
     git
@@ -132,8 +135,6 @@
     yazi
     dua
     bat
-    manix
-    nh
     fish
     fish-lsp
     jujutsu
@@ -145,6 +146,7 @@
 
     brave
     warp-terminal
+    vscode.fhs
   ];
 
   # ---- Programs and Services ----
