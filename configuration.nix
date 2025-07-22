@@ -29,6 +29,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  networking.nameservers = [ "100.100.100.100" "194.242.2.5" "1.1.1.1"];
+  networking.search = [ "astrapia-atria.ts.net" ];
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -191,6 +193,9 @@
     # useRoutingFeatures = "server";
     #};
 
+
+
+    
     immich = {
       enable = true;
       host = "0.0.0.0";
