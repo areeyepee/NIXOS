@@ -5,14 +5,14 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  hostname = "NixServer"; # Define your hostname.
+  in{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-  let 
-    hostname = "NixServer";
-  in
+ 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
