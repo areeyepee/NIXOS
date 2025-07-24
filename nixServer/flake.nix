@@ -23,15 +23,7 @@
         ./configuration.nix
 
         sops-nix.nixosModules.sops
-        ({pkgs, ...}: {
-          nixpkgs.overlays = [
-            (final: prev: {
-              tailscale = prev.tailscale.overrideAttrs (old: {
-                src = tailscale;
-              });
-            })
-          ];
-        })
+        
       ];
     };
   };

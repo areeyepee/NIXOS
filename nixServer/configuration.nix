@@ -10,7 +10,9 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-
+  let 
+    hostname = "NixServer";
+  in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -19,7 +21,7 @@
   nix.settings.experimental-features = ["flakes" "nix-command"];
 
   # ---- Network ----
-  networking.hostName = "NixServer"; # Define your hostname.
+  networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -187,11 +189,9 @@
   services = {
     openssh.enable = true;
 
-    #tailscale = {
-    # enable = true;
-    # autKeyFile = config.age.secrets.tailscale.path;
-    # useRoutingFeatures = "server";
-    #};
+    tailscale = {
+     enable = true;
+    };
 
 
 
