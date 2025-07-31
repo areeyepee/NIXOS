@@ -1,0 +1,1 @@
+NixOS Configuration for my HP Victus 15,6 15-fb0000.
