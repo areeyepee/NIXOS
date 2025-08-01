@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs,  ... }:
 
 {
   imports =
@@ -107,11 +107,11 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
 	# --- Base Stuff ---
-    wget
+  wget
 	rustup
 	clang
 	python314	
-    micro-full
+  micro-full
 
     # --- Nix ---
 	alejandra
@@ -120,9 +120,9 @@
 
 	# --- Apps ---
 	vscode.fhs	
-    brave
-    warp-terminal	 
-
+  brave
+  warp-terminal	 
+  kando
 
 	# --- CLI ---
 	fish-lsp
@@ -141,6 +141,8 @@
 	lazyjj
  ];
 
+  
+  
 
 	#  --- Fonts ---
 
@@ -158,6 +160,8 @@
 	# ------- Programs -------- 
 
 	programs = {
+
+    ssh.startAgent = true; # Start the ssh-agent automatically 
 	
 		fish = {
 
@@ -170,7 +174,7 @@
 			enable = true;
 
 			flake = "/home/raphael/NIX/NIXOS/NixLaptop/"; # String to the default Flake that nh should use for (e.g nh os switch flake)	
-
+      
 			clean = {
 
 				enable = true;
@@ -229,7 +233,11 @@
 		coolercontrol.enable = true;
 		
 
-		
+		direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableFishIntegration = true;
+    };
 		
 	};
 
