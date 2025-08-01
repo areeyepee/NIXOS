@@ -169,7 +169,7 @@
 
 			enable = true;
 
-			flake = "/home/raphael/NIX"; # String to the default Flake that nh should use for (e.g nh os switch flake)	
+			flake = "/home/raphael/NIX/NIXOS/NixLaptop/"; # String to the default Flake that nh should use for (e.g nh os switch flake)	
 
 			clean = {
 
@@ -248,6 +248,14 @@
 		openssh = {
 			enable = true;
 		};
+
+    tailscale = {
+      enable = true;
+      # If you want to use Tailscale with a specific user, uncomment the following line
+      # user = "raphael";
+      # If you want to use Tailscale with a specific auth key, uncomment the following line
+      # authKey = "your-auth-key-here";   
+    };
 		
 	};
 
