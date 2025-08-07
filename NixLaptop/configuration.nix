@@ -92,7 +92,7 @@
     #  thunderbird
     ];
 
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
   };
 
   # Install firefox.
@@ -125,6 +125,13 @@
   	kando
 
 	# --- CLI ---
+	nushell
+	nushellPlugins.highlight
+	nufmt
+	nushellPlugins.polars
+	nushellPlugins.gstat
+	nushellPlugins.skim
+	
 	fish-lsp
 	neofetch
 	
