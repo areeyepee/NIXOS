@@ -107,11 +107,11 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
 	# --- Base Stuff ---
-  wget
+  	wget
 	rustup
 	clang
 	python314	
-  micro-full
+  	micro-full
 
     # --- Nix ---
 	alejandra
@@ -120,9 +120,9 @@
 
 	# --- Apps ---
 	vscode.fhs	
-  brave
-  warp-terminal	 
-  kando
+  	brave
+  	warp-terminal	 
+  	kando
 
 	# --- CLI ---
 	fish-lsp
