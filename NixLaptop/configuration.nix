@@ -107,12 +107,12 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
 	# --- Base Stuff ---
-  	wget
+  wget
 	rustup
 	clang
 	python314	
-  	micro-full
-
+  micro-full
+  uv
     # --- Nix ---
 	alejandra
 	nixd
@@ -120,9 +120,9 @@
 
 	# --- Apps ---
 	vscode.fhs	
-  	brave
-  	warp-terminal	 
-  	kando
+  brave
+  warp-terminal	 
+  kando
 
 	# --- CLI ---
 	nushell
@@ -146,6 +146,10 @@
 	
 	jujutsu
 	lazyjj
+ 
+  fabric-ai
+  ollama
+
  ];
 
   
@@ -238,6 +242,7 @@
 		};
 
 		coolercontrol.enable = true;
+    coolercontrol.nvidiaSupport = true; # Enable support for NVIDIA GPUs
 		
 
 		direnv = {
