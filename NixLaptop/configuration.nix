@@ -1,22 +1,24 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs,  ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "NixLaptop"; # Define your hostname.
- #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -46,9 +48,11 @@
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
-  
+
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+  #Enable Wayland
+  services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -86,10 +90,10 @@
   users.users.raphael = {
     isNormalUser = true;
     description = "Raphael Pertler";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
 
     shell = pkgs.fish;
@@ -104,156 +108,136 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
-	# --- Base Stuff ---
+    # --- Base Stuff ---
     wget
-	rustup
-	clang
-	python314	
-  	micro-full
-  	uv
+    rustup
+    clang
+    python314
+    micro-full
+    uv
     # --- Nix ---
-	alejandra
-	nixd
+    alejandra
+    nixd
 
+    # --- Apps ---
+    vscode.fhs
+    brave
+    warp-terminal
+    kando
 
-	# --- Apps ---
-	vscode.fhs	
-  	brave
-  	warp-terminal	 
-  	kando
+    # --- CLI ---
+    nushell
+    nushellPlugins.highlight
+    nufmt
+    nushellPlugins.polars
+    nushellPlugins.gstat
+    nushellPlugins.skim
 
-	# --- CLI ---
-	nushell
-	nushellPlugins.highlight
-	nufmt
-	nushellPlugins.polars
-	nushellPlugins.gstat
-	nushellPlugins.skim
-	
-	fish-lsp
-	neofetch
-	
-	fzf
-	eza
-	dust
-	ripgrep-all
-	fd
-	dua
-	manix
-	tlrc
-	
-	jujutsu
-	lazyjj
- 
-  	fabric-ai
-  	ollama
+    fish-lsp
+    neofetch
 
-  lshw-gui
- ];
+    fzf
+    eza
+    dust
+    ripgrep-all
+    fd
+    dua
+    manix
+    tlrc
 
-  
-  
+    jujutsu
+    lazyjj
 
-	#  --- Fonts ---
+    fabric-ai
+    ollama
 
-	fonts.packages = with pkgs; [
+    lshw-gui
+  ];
 
-		nerd-fonts.hasklug
-		nerd-fonts.jetbrains-mono
-		nerd-fonts.monoid
-		nerd-fonts.roboto-mono
-		nerd-fonts.space-mono
-		nerd-fonts.victor-mono
-		nerd-fonts.zed-mono
-	];
-	
-	# ------- Programs -------- 
+  #Ensures that the nixpgs Path is the same as the one in the Flake.
+  #Used for the configuration of nixd (LSP)
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
-	programs = {
+  #  --- Fonts ---
 
-    ssh.startAgent = true; # Start the ssh-agent automatically 
-	
-		fish = {
+  fonts.packages = with pkgs; [
+    nerd-fonts.hasklug
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.monoid
+    nerd-fonts.roboto-mono
+    nerd-fonts.space-mono
+    nerd-fonts.victor-mono
+    nerd-fonts.zed-mono
+  ];
 
-			enable = true;
-			
-		};
+  # ------- Programs --------
 
-		nh = {
+  programs = {
+    ssh.startAgent = true; # Start the ssh-agent automatically
 
-			enable = true;
+    fish = {
+      enable = true;
+    };
 
-			flake = "/home/raphael/NIX/NIXOS/NixLaptop/"; # String to the default Flake that nh should use for (e.g nh os switch flake)	
-      
-			clean = {
+    nh = {
+      enable = true;
 
-				enable = true;
+      flake = "/home/raphael/NIX/NIXOS/NixLaptop/"; # String to the default Flake that nh should use for (e.g nh os switch flake)
 
-				extraArgs = "--keep 5 --keep-since 14d";
-			};
-		};
+      clean = {
+        enable = true;
 
-		zoxide = {
-		
-			enable = true;
+        extraArgs = "--keep 5 --keep-since 14d";
+      };
+    };
 
-			enableFishIntegration = true;	
-		};
+    zoxide = {
+      enable = true;
 
-		fzf = {
-			fuzzyCompletion = true;
-		};
+      enableFishIntegration = true;
+    };
 
-		yazi = {
+    fzf = {
+      fuzzyCompletion = true;
+    };
 
-			enable = true;
+    yazi = {
+      enable = true;
+    };
 
-			
-			
-		};
+    bat = {
+      enable = true;
 
-		bat = {
+      extraPackages = with pkgs.bat-extras; [core];
+    };
 
-			enable = true;
+    git = {
+      enable = true;
 
-			extraPackages = with pkgs.bat-extras; [core];
-		};
+      config = {
+        user.name = "areeyepee";
 
+        user.email = "rp@proton.me";
 
-		git = {
+        init.defaultBranch = "main";
+      };
+    };
 
-			enable = true;
+    lazygit = {
+      enable = true;
+    };
 
-			config = {
+    coolercontrol.enable = true;
+    coolercontrol.nvidiaSupport = true; # Enable support for NVIDIA GPUs
 
-				user.name = "areeyepee";
-
-				user.email = "rp@proton.me";
-
-				init.defaultBranch = "main";
-			}; 			
-		};
-
-		lazygit = {
-
-			enable = true;
-			
-		};
-
-		coolercontrol.enable = true;
-    	coolercontrol.nvidiaSupport = true; # Enable support for NVIDIA GPUs
-		
-
-		direnv = {
-      		enable = true;
-      		nix-direnv.enable = true;
-      		enableFishIntegration = true;
-    	};
-		
-	};
-
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableFishIntegration = true;
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -264,21 +248,19 @@
   # };
 
   # List services that you want to enable:
-	services = {
-
-		openssh = {
-			enable = true;
-		};
+  services = {
+    openssh = {
+      enable = true;
+    };
 
     tailscale = {
       enable = true;
       # If you want to use Tailscale with a specific user, uncomment the following line
       # user = "raphael";
       # If you want to use Tailscale with a specific auth key, uncomment the following line
-      # authKey = "your-auth-key-here";   
+      # authKey = "your-auth-key-here";
     };
-		
-	};
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -296,5 +278,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
