@@ -150,6 +150,7 @@
   	fabric-ai
   	ollama
 
+  lshw-gui
  ];
 
   
