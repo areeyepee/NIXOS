@@ -117,6 +117,11 @@
     python314
     micro-full
     uv
+
+    # -TeX-
+    texliveFull
+    tex-fmt
+
     # --- Nix ---
     alejandra
     nixd
@@ -129,6 +134,8 @@
     geteduroam
 
     # --- CLI ---
+
+    #-Nushell-
     nushell
     nushellPlugins.highlight
     nufmt
@@ -136,9 +143,10 @@
     nushellPlugins.gstat
     nushellPlugins.skim
 
+    # -Misc-
     fish-lsp
     neofetch
-
+    # -Tools-
     fzf
     eza
     dust
