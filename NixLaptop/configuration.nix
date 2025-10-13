@@ -126,6 +126,7 @@
     brave
     warp-terminal
     kando
+    geteduroam
 
     # --- CLI ---
     nushell
