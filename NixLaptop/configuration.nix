@@ -166,6 +166,7 @@
     python314
     micro-full
     uv
+    lm_sensors
 
     # -TeX-
     texliveFull
@@ -237,6 +238,10 @@
 
     fish = {
       enable = true;
+      shellAliases = {
+        ez = "eza --color=always --group-directories-first --icons=always";
+        ezl = "eza --long --header --tree --level=2 --all --group-directories-first --no-user --no-permissions --no-time";
+      };
     };
 
     nh = {
