@@ -10,6 +10,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./nbfc.nix
   ];
 
   # Enable nix CLI and Flakes.
@@ -17,6 +18,10 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Whether to enable fwupd, a DBus service that allows applications to update firmware.
+
+  services.fwupd.enable = true;
 
   networking.hostName = "NixLaptop"; # Define your hostname.
   #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -187,7 +192,6 @@
 
     #-Nushell-
     nushell
-    nushellPlugins.highlight
     nufmt
     nushellPlugins.polars
     nushellPlugins.gstat
