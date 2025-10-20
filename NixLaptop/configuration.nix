@@ -51,6 +51,19 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
+  # --- Power Management ---
+
+  #  services.auto-cpufreq.enable = true;
+  # services.auto-cpufreq.settings = {
+  #   battery = {
+  #   governor = "powersave";
+  #     turbo = "never";
+  #  };
+  #  charger = {
+  #    governor = "performance";
+  #    turbo = "auto";
+  #  };
+  #};
   # ---- GRAPHICS ----
   # ------------------
   # Enable the X11 windowing system.
@@ -92,7 +105,7 @@
       # Experimental. CAN CAUSE SLEEP/SUPEND TO FAIL.
       # Fixes glitches and app Crash after sleep, by saving all VRAM memory to /tmp/
       powerManagement = {
-        enable = false;
+        enable = true;
         # Fine-grained power management. Turns off GPU when not in use.
         # Experimental and only works on modern Nvidia GPUs (Turing or newer).
         finegrained = false;
@@ -221,6 +234,8 @@
     lshw-gui
 
     espanso-wayland
+
+    hwinfo
   ];
 
   #Ensures that the nixpgs Path is the same as the one in the Flake.
