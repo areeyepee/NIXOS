@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "espanso-fix": {
+      "locked": {
+        "lastModified": 1736868948,
+        "narHash": "sha256-MD+uHLrcvG6MaUVsZF6gbz232/6NYSizGP5VUHVJKCs=",
+        "owner": "pitkling",
+        "repo": "nixpkgs",
+        "rev": "c006215b2c8ac66586a8de974292289a8372abc4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pitkling",
+        "ref": "espanso-fix-capabilities-export",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1760878510,
@@ -18,6 +34,7 @@
     },
     "root": {
       "inputs": {
+        "espanso-fix": "espanso-fix",
         "nixpkgs": "nixpkgs"
       }
     }

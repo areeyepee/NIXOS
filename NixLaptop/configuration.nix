@@ -64,6 +64,8 @@
   #Enable Plasma 6
   services.desktopManager.plasma6.enable = true;
 
+  services.displayManager.defaultSession = "plasma";
+
   # --- Nvidia GPU and Driver Configuration
 
   # Load nvidia Driver for Xorg and Wayland
@@ -217,6 +219,8 @@
     ollama
 
     lshw-gui
+
+    espanso-wayland
   ];
 
   #Ensures that the nixpgs Path is the same as the one in the Flake.
@@ -326,6 +330,10 @@
       # user = "raphael";
       # If you want to use Tailscale with a specific auth key, uncomment the following line
       # authKey = "your-auth-key-here";
+    };
+
+    espanso = {
+      enable = true;
     };
   };
 
