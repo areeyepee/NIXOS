@@ -204,6 +204,8 @@
     kando
     geteduroam
     rustdesk-flutter
+    beeper
+    libreoffice-qt-fresh
 
     # ---- CLI ----
 
@@ -237,6 +239,7 @@
 
     fabric-ai
     ollama
+    alpaca
 
     lshw-gui
 
