@@ -20,7 +20,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Whether to enable fwupd, a DBus service that allows applications to update firmware.
-
   services.fwupd.enable = true;
 
   networking.hostName = "NixLaptop"; # Define your hostname.
@@ -121,6 +120,8 @@
       # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
       # Only available from driver 515.43.04+
       open = true;
+
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
 
@@ -179,7 +180,7 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
-    # --- Base Stuff ---
+    # ---- Base Stuff ----
     wget
     rustup
     clang
@@ -202,8 +203,9 @@
     warp-terminal
     kando
     geteduroam
+    rustdesk-flutter
 
-    # --- CLI ---
+    # ---- CLI ----
 
     #-Nushell-
     nushell
@@ -222,8 +224,13 @@
     ripgrep-all
     fd
     dua
+
+    # manix is CLI for nixsearch.
     manix
+    # TLRC is tldr.
     tlrc
+    # rip2 is improved rm command.
+    rip2
 
     jujutsu
     lazyjj
