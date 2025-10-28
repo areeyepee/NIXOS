@@ -23,7 +23,7 @@
   services.fwupd.enable = true;
 
   networking.hostName = "NixLaptop"; # Define your hostname.
-  #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -31,6 +31,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  #networking.useDHCP = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -65,18 +66,30 @@
   #};
   # ---- GRAPHICS ----
   # ------------------
+
+  # --- Desktop Environment Configuration ---
+
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
+  # Enable Wayland support in SDDM.
+  #services.displayManager.sddm.wayland.enable = true;
 
+  # -- Desktop Environment --
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  #Enable Wayland
-  services.displayManager.sddm.wayland.enable = true;
+  #services.displayManager.sddm.enable = true;
   #Enable Plasma 6
-  services.desktopManager.plasma6.enable = true;
+  #services.desktopManager.plasma6.enable = true;
 
-  services.displayManager.defaultSession = "plasma";
+  # -- COSMIC DE --
+  # Enable Cosmic Desktop Environment
+  services.desktopManager.cosmic.enable = true;
+  # Enable the Cosmic greeter (login screen)
+  services.displayManager.cosmic-greeter.enable = true;
+
+  services.desktopManager.cosmic.xwayland.enable = true;
+  # Set the default session for the display Manager
+  #services.displayManager.defaultSession = "plasma";
 
   # --- Nvidia GPU and Driver Configuration
 
@@ -203,9 +216,11 @@
     warp-terminal
     kando
     geteduroam
-    rustdesk-flutter
+    rustdesk
+
     beeper
     libreoffice-qt-fresh
+    packet
 
     # ---- CLI ----
 
@@ -326,7 +341,7 @@
     };
 
     coolercontrol.enable = true;
-    coolercontrol.nvidiaSupport = true; # Enable support for NVIDIA GPUs
+    # coolercontrol.nvidiaSupport = true; # Enable support for NVIDIA GPUs
 
     direnv = {
       enable = true;
@@ -335,6 +350,7 @@
     };
   };
 
+  # ----- Services -----
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -348,6 +364,9 @@
     openssh = {
       enable = true;
     };
+
+    # Needed for openssh to work with Cosmic DE
+    gnome.gcr-ssh-agent.enable = false;
 
     tailscale = {
       enable = true;
