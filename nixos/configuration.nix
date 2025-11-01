@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -19,7 +20,7 @@
   nix.settings.experimental-features = ["flakes" "nix-command"];
 
   # ---- Network ----
-  networking.hostName = "Nixrp"; # Define your hostname.
+  networking.hostName = "NixVM"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -51,8 +52,18 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
+
+  # Enable KDE Plasma DE
+  services.desktopManager.plasma6.enable = true;
+
+  # Enable sddm 
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
+
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -86,7 +97,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.areeyepee = {
+  users.users.rp = {
     isNormalUser = true;
     description = "Raphael Pertler";
     extraGroups = ["networkmanager" "wheel"];
@@ -107,23 +118,29 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
-    #Base Stuff
+    #--- Base Stuff ---
 
     rustup
     clang
-    python312
+    python314
 
-    #---NIX Specific---
+    # --- NIX Specific ---
     alejandra
     nixd
-    #--- CLI---
+    # --- CLI ---
+    # -- Misc --
     wget
+    fish-lsp
+    neofetch
+
+    # -- Tools --
+    # -- Git --
     git
     lazygit
-    micro-full
-    eureka-ideas
+    jujutsu
+    lazyjj
+    # -- Daily Driver --
     zoxide
-    neofetch
     fzf
     eza
     dust
@@ -132,25 +149,37 @@
     yazi
     dua
     bat
+    # manix is a CLI interface dor NixSearch
     manix
+    # nh is nix commands enhanced
     nh
-    fish
-    fish-lsp
-    jujutsu
-    lazyjj
+    # tldr rust client
+    tlrc
+    # rip2 is improved rm. [rip <dir>]
+    rip2    
+    
+    
 
     #---Applications---
-    findex
-    ulauncher
-
     vscode.fhs
     brave
     warp-terminal
+    rustdesk
   ];
+
+  # Ensures nixpkgs Path == nixpkgs in the Flake.
+  # Used for nixd configuration.
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   # ---- Programs and Services ----
 
+  programs.ssh.startAgent = true;
+
   programs.fish.enable = true;
+  programs.fish.shellAliases = {
+    ez = "eza --color=always --group-directories-first --icons=always";
+    ezl = "eza --long --header --tree --level=2 --all --group-directories-first --no-user --no-permissions --no-time";
+  };
 
   programs.television = {
     enable = true;
@@ -159,6 +188,7 @@
   programs.nh = {
     enable = true;
     clean.enable = true;
+    flake = "/home/rp/GitHub/NIXOS/nixos/";
   };
   programs.fzf.fuzzyCompletion = true;
 
@@ -184,6 +214,9 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  services.tailscale.enable = true;
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
