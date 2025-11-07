@@ -105,8 +105,9 @@
       modesetting.enable = true;
 
       prime = {
-        # Need to use the correct ID's for the system.
+        sync.enable = true;
 
+        # Need to use the correct ID's for the system.
         # For current system (14.10.25)
         # amd ID =  pci@0000:06:00.0
         # nvidia ID = pci@0000:01:00.0
@@ -220,6 +221,7 @@
 
     beeper
     libreoffice-qt-fresh
+    kdePackages.okular
     packet
 
     # ---- CLI ----
