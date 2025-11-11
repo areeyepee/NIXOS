@@ -350,6 +350,10 @@
       nix-direnv.enable = true;
       enableFishIntegration = true;
     };
+
+    steam = {
+      enable = true;
+    };
   };
 
   # ----- Services -----
