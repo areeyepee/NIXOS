@@ -224,6 +224,8 @@
     kdePackages.okular
     packet
 
+    piper
+
     # ---- CLI ----
 
     #-Nushell-
@@ -385,6 +387,8 @@
     espanso = {
       enable = true;
     };
+
+    ratbagd.enable = true;
   };
 
   # Enable the OpenSSH daemon.
