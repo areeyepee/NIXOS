@@ -210,6 +210,7 @@
     # --- Nix ---
     alejandra
     nixd
+    compose2nix
 
     # --- Apps ---
     vscode.fhs
@@ -217,7 +218,8 @@
     warp-terminal
     kando
     geteduroam
-    rustdesk
+    rustdesk-flutter
+    anytype
 
     beeper
     libreoffice-qt-fresh
@@ -225,7 +227,7 @@
     packet
 
     piper
-
+    solaar
     # ---- CLI ----
 
     #-Nushell-
@@ -262,7 +264,7 @@
 
     lshw-gui
 
-    espanso-wayland
+    #  espanso-wayland
 
     hwinfo
   ];
@@ -356,6 +358,8 @@
     steam = {
       enable = true;
     };
+
+    extra-container.enable = true;
   };
 
   # ----- Services -----
@@ -384,9 +388,9 @@
       # authKey = "your-auth-key-here";
     };
 
-    espanso = {
-      enable = true;
-    };
+    # espanso = {
+    #   enable = true;
+    # };
 
     ratbagd.enable = true;
   };
