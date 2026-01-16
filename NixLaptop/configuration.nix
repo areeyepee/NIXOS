@@ -225,17 +225,17 @@
     libreoffice-qt-fresh
     kdePackages.okular
     packet
-
+	tail-tray
     piper
     solaar
     # ---- CLI ----
 
     #-Nushell-
-    nushell
-    nufmt
-    nushellPlugins.polars
-    nushellPlugins.gstat
-    nushellPlugins.skim
+   # nushell
+   # nufmt
+   # nushellPlugins.polars
+   # nushellPlugins.gstat
+   # nushellPlugins.skim
 
     # -Misc-
     fish-lsp
