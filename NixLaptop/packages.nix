@@ -26,7 +26,7 @@
     compose2nix
 
     # --- Apps ---
-    vscode.fhs
+    vscode-fhs
     brave
     warp-terminal
     kando
@@ -39,6 +39,7 @@
     kdePackages.okular
     packet
     tail-tray
+    trayscale
     piper
     solaar
     # ---- CLI ----
@@ -61,6 +62,8 @@
     fd
     dua
 
+    btop
+
     # manix is CLI for nixsearch.
     manix
     # TLRC is tldr.
@@ -71,9 +74,12 @@
     jujutsu
     lazyjj
 
-    fabric-ai
-    ollama
-    alpaca
+
+    
+    # AI / LLM Stuff
+    #fabric-ai
+    #ollama
+    #alpaca
 
     lshw-gui
 

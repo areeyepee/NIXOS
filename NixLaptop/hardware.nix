@@ -2,7 +2,10 @@
   # --- Nvidia GPU and Driver Configuration
 
   # Load nvidia Driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [
+    "nvidia"
+    "amdgpu"
+  ];
 
   hardware = {
     # Enables OpenGL
@@ -13,8 +16,9 @@
       modesetting.enable = true;
 
       prime = {
-        sync.enable = true;
-
+        #sync.enable = true;
+        offload.enable = true;
+        offload.enableOffloadCmd = true;
         # Need to use the correct ID's for the system.
         # For current system (14.10.25)
         # amd ID =  pci@0000:06:00.0
