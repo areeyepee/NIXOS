@@ -101,49 +101,6 @@
   # Load nvidia Driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 
-  hardware = {
-    # Enables OpenGL
-    graphics.enable = true;
-
-    nvidia = {
-      # Modesetting is required
-      modesetting.enable = true;
-
-      prime = {
-        sync.enable = true;
-
-        # Need to use the correct ID's for the system.
-        # For current system (14.10.25)
-        # amd ID =  pci@0000:06:00.0
-        # nvidia ID = pci@0000:01:00.0
-        amdgpuBusId = "PCI:06:0:0";
-        nvidiaBusId = "PCI:01:0:0";
-      };
-
-      # Experimental. CAN CAUSE SLEEP/SUPEND TO FAIL.
-      # Fixes glitches and app Crash after sleep, by saving all VRAM memory to /tmp/
-      powerManagement = {
-        enable = true;
-        # Fine-grained power management. Turns off GPU when not in use.
-        # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-        finegrained = false;
-      };
-
-      # Enables Nvidia settings menu, via "nvidia-settings"
-      nvidiaSettings = true;
-
-      # Use the NVidia open source kernel module (not to be confused with the
-      # independent third-party "nouveau" open source driver).
-      # Support is limited to the Turing and later architectures. Full list of
-      # supported GPUs is at:
-      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-      # Only available from driver 515.43.04+
-      open = true;
-
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-  };
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "de";
@@ -191,89 +148,6 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-
-    # ---- Base Stuff ----
-    wget
-    rustup
-    clang
-    python314
-    micro-full
-    uv
-    lm_sensors
-
-    # -TeX-
-    texliveFull
-    tex-fmt
-
-    # --- Nix ---
-    alejandra
-    nixd
-    compose2nix
-
-    # --- Apps ---
-    vscode.fhs
-    brave
-    warp-terminal
-    kando
-    geteduroam
-    rustdesk-flutter
-    # anytype
-
-    beeper
-    libreoffice-qt-fresh
-    kdePackages.okular
-    packet
-    tail-tray
-    piper
-    solaar
-    # ---- CLI ----
-
-    #-Nushell-
-    # nushell
-    # nufmt
-    # nushellPlugins.polars
-    # nushellPlugins.gstat
-    # nushellPlugins.skim
-
-    # -Misc-
-    fish-lsp
-    fastfetch
-    # -Tools-
-    fzf
-    eza
-    dust
-    ripgrep-all
-    fd
-    dua
-
-    # manix is CLI for nixsearch.
-    manix
-    # TLRC is tldr.
-    tlrc
-    # rip2 is improved rm command.
-    rip2
-
-    jujutsu
-    lazyjj
-
-    fabric-ai
-    ollama
-    alpaca
-
-    lshw-gui
-
-    #  espanso-wayland
-
-    hwinfo
-  ];
-
   #Ensures that the nixpgs Path is the same as the one in the Flake.
   #Used for the configuration of nixd (LSP)
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
@@ -290,83 +164,6 @@
     nerd-fonts.zed-mono
   ];
 
-  # ------- Programs --------
-
-  programs = {
-    ssh.startAgent = true; # Start the ssh-agent automatically
-
-    fish = {
-      enable = true;
-      shellAliases = {
-        ez = "eza --color=always --group-directories-first --icons=always";
-        ezl = "eza --long --header --tree --level=2 --all --group-directories-first --no-user --no-permissions --no-time";
-      };
-    };
-
-    nh = {
-      enable = true;
-
-      flake = "/home/raphael/NIX/NIXOS/NixLaptop/"; # String to the default Flake that nh should use for (e.g nh os switch flake)
-
-      clean = {
-        enable = true;
-
-        extraArgs = "--keep 5 --keep-since 14d";
-      };
-    };
-
-    zoxide = {
-      enable = true;
-
-      enableFishIntegration = true;
-    };
-
-    fzf = {
-      fuzzyCompletion = true;
-    };
-
-    yazi = {
-      enable = true;
-    };
-
-    bat = {
-      enable = true;
-
-      extraPackages = with pkgs.bat-extras; [core];
-    };
-
-    git = {
-      enable = true;
-
-      config = {
-        user.name = "areeyepee";
-
-        user.email = "rp@proton.me";
-
-        init.defaultBranch = "main";
-      };
-    };
-
-    lazygit = {
-      enable = true;
-    };
-
-    coolercontrol.enable = true;
-    # coolercontrol.nvidiaSupport = true; # Enable support for NVIDIA GPUs
-
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-      enableFishIntegration = true;
-    };
-
-    steam = {
-      enable = true;
-    };
-
-    extra-container.enable = true;
-  };
-
   # ----- Services -----
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -375,30 +172,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
-  services = {
-    openssh = {
-      enable = true;
-    };
-
-    # Needed for openssh to work with Cosmic DE
-    gnome.gcr-ssh-agent.enable = false;
-
-    tailscale = {
-      enable = true;
-      # If you want to use Tailscale with a specific user, uncomment the following line
-      # user = "raphael";
-      # If you want to use Tailscale with a specific auth key, uncomment the following line
-      # authKey = "your-auth-key-here";
-    };
-
-    # espanso = {
-    #   enable = true;
-    # };
-
-    ratbagd.enable = true;
-  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
