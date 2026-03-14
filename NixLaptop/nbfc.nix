@@ -1,10 +1,5 @@
 # nbfc.nix
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   myUser = "raphael"; #adjust this to your username
   command = "bin/nbfc_service --config-file '/home/${myUser}/.config/nbfc.json'";
 in {

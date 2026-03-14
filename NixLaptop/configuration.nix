@@ -11,6 +11,11 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./nbfc.nix
+    ./packages.nix
+    ./programs.nix
+    ./services.nix
+    ./network.nix
+    ./hardware.nix
   ];
 
   # Enable nix CLI and Flakes.
@@ -219,27 +224,27 @@
     kando
     geteduroam
     rustdesk-flutter
-    anytype
+    # anytype
 
     beeper
     libreoffice-qt-fresh
     kdePackages.okular
     packet
-	tail-tray
+    tail-tray
     piper
     solaar
     # ---- CLI ----
 
     #-Nushell-
-   # nushell
-   # nufmt
-   # nushellPlugins.polars
-   # nushellPlugins.gstat
-   # nushellPlugins.skim
+    # nushell
+    # nufmt
+    # nushellPlugins.polars
+    # nushellPlugins.gstat
+    # nushellPlugins.skim
 
     # -Misc-
     fish-lsp
-    neofetch
+    fastfetch
     # -Tools-
     fzf
     eza

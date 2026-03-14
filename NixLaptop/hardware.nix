@@ -47,6 +47,8 @@
     };
   };
 
+  services.fwupd.enable = true;
+
   # --- Power Management ---
 
   #  services.auto-cpufreq.enable = true;
