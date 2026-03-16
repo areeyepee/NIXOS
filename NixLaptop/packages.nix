@@ -29,15 +29,18 @@
     vscode-fhs
     brave
     warp-terminal
+    waveterm
     kando
     geteduroam
     rustdesk-flutter
-    #s anytype
-
+    resources
+    anytype
+    spacedrive
+    anki
     beeper
     libreoffice-qt-fresh
     kdePackages.okular
-    packet
+    
     tail-tray
     trayscale
     piper
@@ -74,8 +77,6 @@
     jujutsu
     lazyjj
 
-
-    
     # AI / LLM Stuff
     #fabric-ai
     #ollama
