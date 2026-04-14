@@ -12,8 +12,10 @@
     rustup
     clang
     python314
-    micro-full
+    ruff
     uv
+    ty
+    micro-full
     lm_sensors
 
     # -TeX-
@@ -40,7 +42,8 @@
     beeper
     libreoffice-qt-fresh
     kdePackages.okular
-    
+    saber
+
     tail-tray
     trayscale
     piper
@@ -86,6 +89,6 @@
 
     #  espanso-wayland
 
-    hwinfo
+    
   ];
 }

@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   programs = {
+
+    nix-ld.enable = true; # Enable nix-ld for running non-Nix applications in a Nix environment
+    # THIS IS NEEDED TO USE UV WITH PYTHON!!!
     ssh.startAgent = true; # Start the ssh-agent automatically
 
     fish = {

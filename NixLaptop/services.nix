@@ -9,6 +9,8 @@
 
     tailscale = {
       enable = true;
+      openFirewall = true;
+      extraUpFlags = ["--ssh"];
       # If you want to use Tailscale with a specific user, uncomment the following line
       # user = "raphael";
       # If you want to use Tailscale with a specific auth key, uncomment the following line
