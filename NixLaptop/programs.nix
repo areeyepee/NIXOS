@@ -4,6 +4,17 @@
     nix-ld.enable = true; # Enable nix-ld for running non-Nix applications in a Nix environment
     # THIS IS NEEDED TO USE UV WITH PYTHON!!!
     ssh.startAgent = true; # Start the ssh-agent automatically
+   # ssh.knownHosts = {
+   #   Codeberg = {
+   #     hostNames = ["codeberg.org"];
+   #     publicKeyFile = "/home/raphael/.ssh/id_ed25519";
+   #   };
+
+   #   Github = {
+   #     hostNames = ["github.com"];
+   #     publicKeyFile = "/home/raphael/.ssh/GitHub";
+   #   };
+   # };
 
     fish = {
       enable = true;
@@ -42,7 +53,6 @@
     bat = {
       enable = true;
 
-      extraPackages = with pkgs.bat-extras; [core];
     };
 
     git = {

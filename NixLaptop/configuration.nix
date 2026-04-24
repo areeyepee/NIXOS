@@ -9,12 +9,13 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./nbfc.nix
+    #./nbfc.nix
     ./packages.nix
     ./programs.nix
     ./services.nix
     ./network.nix
     ./hardware.nix
+    ./overlays.nix
   ];
 
   # Enable nix CLI and Flakes.
