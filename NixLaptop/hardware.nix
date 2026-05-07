@@ -1,4 +1,13 @@
 {config, ...}: {
+
+
+  # Settings for handling Lid behaivour
+  # one of "ignore", "poweroff", "reboot", "halt", "kexec", "suspend", "hibernate", "hybrid-sleep", "suspend-then-hibernate", "lock"
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
+  };
+
   # --- Nvidia GPU and Driver Configuration
 
   # Load nvidia Driver for Xorg and Wayland
@@ -51,6 +60,8 @@
     };
   };
 
+
+  # Whether to enable fwupd, a DBus service that allows applications to update firmware.
   services.fwupd.enable = true;
 
   # --- Power Management ---

@@ -12,6 +12,10 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # Which d-Bus impementation to use 
+  services.dbus.implementation = "broker";
+
+
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "rtsx_pci_sdmmc"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];

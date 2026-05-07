@@ -24,8 +24,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Whether to enable fwupd, a DBus service that allows applications to update firmware.
-  services.fwupd.enable = true;
+  
 
   networking.hostName = "NixLaptop"; # Define your hostname.
   #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
@@ -145,8 +144,6 @@
     shell = pkgs.fish;
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
 
   #Ensures that the nixpgs Path is the same as the one in the Flake.
   #Used for the configuration of nixd (LSP)

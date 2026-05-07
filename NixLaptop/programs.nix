@@ -32,7 +32,7 @@
       clean = {
         enable = true;
 
-        extraArgs = "--keep 5 --keep-since 14d";
+        extraArgs = "--keep 3 --keep-since 14d";
       };
     };
 
@@ -71,14 +71,14 @@
       enable = true;
     };
 
-    coolercontrol.enable = true;
+    #coolercontrol.enable = true;
     # coolercontrol.nvidiaSupport = true; # Enable support for NVIDIA GPUs
 
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-      enableFishIntegration = true;
-    };
+    # direnv = {
+    #  enable = true;
+    #  nix-direnv.enable = true;
+    #  enableFishIntegration = true;
+    #};
 
     steam = {
       enable = true;
