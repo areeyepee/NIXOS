@@ -20,6 +20,9 @@
 
   # Enable nix CLI and Flakes.
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  nix.optimise.automatic =  true;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
