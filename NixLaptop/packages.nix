@@ -40,9 +40,13 @@
     spacedrive
     anki
     beeper
-    libreoffice-qt-fresh
+    #libreoffice-qt-fresh
+    libreoffice
+    
     kdePackages.okular
     saber
+    super-productivity
+    butterfly
 
     tail-tray
     trayscale
